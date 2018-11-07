@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Create an account {% endblock %}
+
+{% block content %}
+			<section class="facts-area section-gap">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-8 pb-40 header-text text-center">
+							<h1>CREATE ACCOUNT HERE</h1>
+							<p class="mb-10 text-center">
+								.
+							</p>
+						</div>
+					</div>					
+					<div class="row">
+						<div class="col-lg-12 col-sm-12">
+							<div class="single-review">
+							<h4>
+							Please fill in this form
+							</h4>
+							<form class="form" role="form" autocomplete="off" action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+						    
+							    <div class="from-group text-center">
+									{{ form|crispy }}
+
+									{% csrf_token %}
+									<br>
+									<br>
+
+									<p><input type="submit" value="Register"></p>
+									
+
+							    </div>
+							</form>
+							</div>
+						</div>
+						</div>
+						</div>
+						</section>
+
+{% endblock %}
+

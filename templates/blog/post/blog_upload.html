@@ -1,0 +1,49 @@
+{% extends 'blog/baseblog.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+
+			<!-- Start blog-posts Area -->
+			<section class="blog-posts-area section-gap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8 post-list blog-post-list">
+							<div class="single-post">
+									<blockquote class="generic-blockquote">
+										<h1>Add Blog here</h1>
+									</blockquote>
+							
+								<div class="content-wrap">
+								<form  action="{% url 'blog:blog_post' %}" method="post" enctype="multipart/form-data">
+
+								{% csrf_token %}
+								{{ blog_forms|crispy }}
+
+									<input type="submit" value="upload">
+								</form>
+														
+
+								</div>
+                       </div>
+                      </div>
+                      </div>
+                     </div>
+                    </section>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

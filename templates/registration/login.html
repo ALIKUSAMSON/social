@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+			<section class="banner-area relative" id="home">
+				<div class="overlay overlay-bg"></div>	
+				<div class="container">
+					<div class="row fullscreen d-flex align-items-center justify-content-center">
+
+						<div class="col-lg-6  col-md-6 header-right">
+							<h4 class="text-white pb-30">LOGIN</h4>
+						{% if form.errors %}
+							<p>Your username and password didnt match. Please try again</p>
+						{% else %}
+							<p>Please, use the following form to login. If you don't have an account 
+							<a href="{% url 'register' %}">register here</a></p>
+
+						{% endif %}
+						<div>
+							<form class="form" role="form" autocomplete="off" action="{% url 'login' %}" method="post">
+						    
+							    <div class="from-group text-center">
+									{{ form|crispy }}
+
+									{% csrf_token %}
+
+									<input type="hidden" name="next" value="{{ next }}">
+									<br>
+									<p><input type="submit" value="Login"></p>
+									
+
+							    </div>
+							</form>
+								<p><a href="{% url 'password_reset' %}">Forgotten your password?</a></p>
+						</div>											
+					</div>
+				</div>					
+			</section>
+
+
+{% endblock %}

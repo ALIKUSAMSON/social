@@ -1,0 +1,113 @@
+{% extends 'blog/baseblog.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block content %}
+
+
+			<!-- Start blog-posts Area -->
+			<section class="blog-posts-area section-gap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8 post-list blog-post-list">
+							<div class="single-post">
+									<h1>
+										{{ post.title }}
+									</h1>
+									<blockquote class="generic-blockquote">
+										Published on exit{{post.publish}} by {{ post.author }}
+									</blockquote>
+							
+								<div class="content-wrap">
+								{{ post.body|linebreaks }}									
+
+								</div>
+								<div class="bottom-meta">
+									<div class="user-details row align-items-center">
+										<div class="comment-wrap col-lg-6 col-sm-6">
+											<ul>
+												<li><a href="{{ post.get_like_url }}"  name="post_id"><span class="lnr lnr-heart"></span>	
+													{% with post.likes.count as total_likes %}
+														{{ total_likes }} like{{ total_likes|pluralize }}
+													{% endwith %}	
+											</a></li>
+												<li><a href="#"><span class="lnr lnr-bubble"></span>
+													{% with comments.count as total_comments %}
+														{{ total_comments }} Comment{{ total_comments|pluralize }}
+													{% endwith %}
+												</a></li>
+											</ul>
+										</div>
+										<div class="social-wrap col-lg-6">
+											<ul>
+											<li><a href="{% url 'blog:post_share' post.id %}">Share this post</a></li>
+												<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+												<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+												<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+												<li><a href="#"><i class="fa fa-behance"></i></a></li>
+											</ul>
+										</div>
+								
+
+
+                            <!-- Start comment-sec Area -->
+                            <!--<section class="comment-sec-area pt-80 pb-80">-->
+                                <div class="container">
+                                    <div class="row flex-column">
+                                        <div class="comment-list">
+                                            <div class="single-comment justify-content-between d-flex">
+                                             {% for comment in comments %}
+                                                <div class="user justify-content-between d-flex">
+                                                <ul>
+                                                    <div class="thumb">
+                                                        <img src="{% static 'img/blog/c1.jpg' %}" alt="">
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h5><a href="#">{{ comment.name }}</a></h5>
+                                                        <p class="date">{{ comment.created }} </p>
+                                                        <p class="comment">
+                                                            {{ comment.body|linebreaks }}
+                                                        </p>
+                                                    </div>
+                                                    </ul>
+                                                </div>
+                                                {% empty %}
+														<p>There are no comments yet.</p>
+												{% endfor %}
+                                            </div>
+                                        </div>
+                                     </div>
+                                   </div>
+                            <!--</section>-->
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                      </div>
+                     </div>
+                    </section>
+
+
+
+	{% if new_comments %}
+		<h2>Your comments has been added</h2>
+	{% else %}
+
+		<h2>Leave a comment</h2>
+		<form action="{% url 'blog:detail' post.slug %}" method="post">
+			{% csrf_token %}
+			{{ comment_form.as_p }}
+
+			<input type="submit" value="Add comment">
+		</form>
+	{% endif %}
+
+{% endblock %}
+
+
+
+
+

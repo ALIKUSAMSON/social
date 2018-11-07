@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Dashboard {% endblock %}
+
+{% block content %}
+
+			<section class="facts-area section-gap">
+				<div class="container">
+
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-8 pb-40 header-text text-center">
+							<h1>Welcome {{ user.username }} to your dashboard</h1>
+							<p class="mb-10 text-center">
+								You can edit your account using the following form:
+							</p>
+							<h4>
+							{% include 'message.html' %}
+							</h4>
+						</div>
+					</div>					
+					<div class="row">
+
+			<!-- Start feature Area -->
+			<section class="feature-area section-gap" id="service">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="col-md-4 pb-40 header-text">
+							<div class="single-feature">
+								<h4><span class="lnr lnr-user"></span>Profile Picture </h4>
+								
+							<img src="{{ user.profile.photo.url }}" class="img-thumbnail" alt="Profile Picture" width="304" height="236">
+			
+
+							</div>
+						</div>
+
+						<div class="col-md-4 pb-40 header-text">
+						
+					<div class="single-feature">
+								<h4><span class="glyphicon glyphicon-home"></span>Profile</h4>
+
+							  <table class="table">
+							    <thead>
+							      <tr>
+							        <th></th>
+							        <th></th>
+							        
+							      </tr>
+							    </thead>
+							    <tbody>
+							      <tr class="success">
+							        <td>First Name: </td>
+							        <td><strong>{{ user.first_name }}</strong></td>
+
+							      </tr>
+							      <tr class="success">
+							        <td>Last Name: </td>
+							        <td><strong>{{ user.last_name }}</strong></td>
+							      </tr>
+							      	<tr class="success">
+
+							        <td>Username:</td>
+							        <td><strong>{{ user.profile.user  }}</strong></td>
+
+							      </tr>
+							   		<tr class="success">
+
+							        <td>Email:</td>
+							        <td><strong>{{ user.email }}</strong></td>
+							        
+							      </tr>
+							      	<tr class="success">
+							        <td>Date of Birth:</td>
+							        <td> <strong>{{ user.profile.date_of_birth }}</strong></td>
+							      </tr>
+							      	<tr class="success">
+							        <td>Sex:</td>
+							        <td> <strong>{{ user.profile.sex }}</strong></td>
+							      </tr>
+
+							    </tbody>
+							  </table>
+							</div>
+								
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4 col-md-6">
+							<div class="single-feature">
+								<h4><span class="glyphicon glyphicon-edit"></span><a href="{% url 'edit' %}">edit your profile</a> </h4>
+								<p>Edit your profile here</p>
+								
+							</div>
+						</div>
+
+						<div class="col-lg-4 col-md-6">
+							<div class="single-feature">
+								<h4><span class="glyphicon glyphicon-dashboard"></span><a href="{% url 'password_change' %}">
+							change your password</a></h4>
+								<p>
+									Change your password
+								</p>
+							</div>
+						</div>
+						
+						<div class="col-lg-4 col-md-6">
+							<div class="single-feature">
+								<h4><span class="glyphicon glyphicon-plus"></span><a href="{% url 'blog:blog_post' %}">
+									Add a blog</a></h4>
+								<p>
+									Upload your bllg here
+								</p>
+							</div>
+						</div>
+
+					</div>
+				</div>	
+			</section>
+			<!-- End feature Area -->
+
+
+						</div>
+						</div>
+						</section>
+
+
+{% endblock %}
+
